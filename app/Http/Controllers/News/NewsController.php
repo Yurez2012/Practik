@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\News;
 
+use App\Http\Requests\NewsRequest;
+use App\News;
 use Illuminate\Http\Request;
-
-use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class AdminController extends Controller
+class NewsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +16,7 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('admin.index');
+        return view('news.news');
     }
 
     /**
@@ -26,7 +26,7 @@ class AdminController extends Controller
      */
     public function create()
     {
-        //
+        return view('news.add');
     }
 
     /**
@@ -35,9 +35,10 @@ class AdminController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(NewsRequest $request)
     {
-        //
+        dd($request);
+
     }
 
     /**
