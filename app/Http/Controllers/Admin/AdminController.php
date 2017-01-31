@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\News;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -16,7 +17,9 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('admin.index');
+        //create news from count news
+        $count = count(News::all());
+        return view('admin.index', compact('count'));
     }
 
     /**

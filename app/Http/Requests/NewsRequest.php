@@ -26,7 +26,7 @@ class NewsRequest extends Request
         return [
             'title' => 'min:5|required|string',
             'text' => 'min:5|required|string',
-            'img' => 'image:png',
+            'img' => 'required|image:png,jpg',
         ];
     }
 }

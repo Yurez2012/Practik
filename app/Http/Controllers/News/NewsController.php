@@ -16,7 +16,8 @@ class NewsController extends Controller
      */
     public function index()
     {
-        return view('news.news');
+        $news = News::all();
+        return view('news.news', compact('news'));
     }
 
     /**
@@ -37,8 +38,8 @@ class NewsController extends Controller
      */
     public function store(NewsRequest $request)
     {
-        dd($request);
-
+        News::create($request->all());
+        return redirect('/');
     }
 
     /**
