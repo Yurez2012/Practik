@@ -30,11 +30,14 @@ Route::post('auth/register', 'Auth\AuthController@postRegister');
 Route::get('/', 'News\NewsController@index');
 
 
-
 Route::group(['middleware' => 'auth'], function () {
 
     //Admin Panel
     Route::get('auth/admin', 'Admin\AdminController@index');
+    Route::get('auth/admin/news', 'Admin\AdminController@news');
+    Route::get('auth/admin/news/{id}/edit', 'Admin\AdminController@editNews');
+    Route::post('auth/admin/news/update/{id}', 'Admin\AdminController@updateNews');
+    Route::delete('auth/admin/news/delete/{id}', 'Admin\AdminController@destroyNews');
 
     //News
     Route::get('news/add', 'News\NewsController@create');

@@ -17,7 +17,7 @@ class CreateNewsTable extends Migration
             $table->string('title')->unique();
             $table->string('text');
             $table->string('img');
-            $table->rememberToken();
+            $table->string('_token');
             $table->timestamps();
         });
     }

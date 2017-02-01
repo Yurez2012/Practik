@@ -20,32 +20,16 @@
 </head>
 <body>
 
-    <div class="wrapper container-fluid">
-        <header>
-            <div class="text-right">
-                @if(Auth::check())
-                    <h3>
-                        {!! link_to('auth/logout', $title = 'logout', $attributes = [], $secure = null) !!} |
-                        {!! link_to('auth/admin', $title = 'admin', $attributes = [], $secure = null) !!} |
-                        {!! link_to('/', $title = 'home', $attributes = [], $secure = null) !!} |
-                        {!! link_to('news/add', $title = 'AddNews', $attributes = [], $secure = null) !!}
-                    </h3>
-                @endif
+<div class="wrapper container-fluid">
+    <div class="navbar">
 
-                @if(!Auth::check())
-                    <h3>User | {!! link_to('auth/login', $title = 'Auth', $attributes = [], $secure = null) !!}</h3>
-                @endif
-            </div>
-        </header>
-        <div class="navbar">
-
-        </div>
-        <div class="content">
-            @yield('content')
-        </div>
-        <footer>
-
-        </footer>
     </div>
+    <div class="content">
+        @yield('content')
+    </div>
+    <footer>
+
+    </footer>
+</div>
 </body>
 </html>
