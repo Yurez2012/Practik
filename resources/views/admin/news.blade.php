@@ -51,11 +51,11 @@
                                     <td>{{ substr($item->text, 0, 25) }}</td>
                                     <td>{{ substr($item->text, 0, 50) }}</td>
                                     <td>{{ substr($item->img, 27) }}</td>
-                                    <td>{!! link_to('auth/admin/news/'.$item->id.'/edit', $title = 'Edit', $attributes = [], $secure = null) !!}</td>
+                                    <td>{!! link_to('auth/admin/news/'.$item->id.'/edit', $title = 'Edit', ['class' => 'btn btn-primary submit-reg'], $attributes = [], $secure = []) !!}</td>
                                     <td>
                                         {!! Form::open(['url' => 'auth/admin/news/delete/'.$item->id]) !!}
 
-                                        {!! Form::submit('Delete', ['class' => 'btn btn-primary submit-reg']) !!}
+                                            {!! Form::submit('Delete', ['class' => 'btn btn-primary submit-reg']) !!}
 
                                         {!! Form::close() !!}
                                     </td>

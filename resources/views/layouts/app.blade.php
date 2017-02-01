@@ -28,7 +28,6 @@
                         {!! link_to('auth/logout', $title = 'logout', $attributes = [], $secure = null) !!} |
                         {!! link_to('auth/admin', $title = 'admin', $attributes = [], $secure = null) !!} |
                         {!! link_to('/', $title = 'home', $attributes = [], $secure = null) !!} |
-                        {!! link_to('news/add', $title = 'AddNews', $attributes = [], $secure = null) !!}
                     </h3>
                 @endif
 

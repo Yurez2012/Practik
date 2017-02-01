@@ -155,6 +155,20 @@
                 <li class="active">
                     <a href="{{ URL('auth/admin') }}"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
                 </li>
+                <li>
+                    <a href="{{ URL('auth/admin/news/add') }}">New News</a>
+                </li>
+                <li>
+                    <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> News <i class="fa fa-fw fa-caret-down"></i></a>
+                    <ul id="demo" class="collapse">
+                        <li>
+                            <a href="#">All News</a>
+                        </li>
+                        <li>
+                            <a href="#">New News</a>
+                        </li>
+                    </ul>
+                </li>
             </ul>
         </div>
         <!-- /.navbar-collapse -->

@@ -27,7 +27,7 @@ class NewsController extends Controller
      */
     public function create()
     {
-        return view('news.add');
+
     }
 
     /**
@@ -37,10 +37,9 @@ class NewsController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function store(NewsRequest $request)
+    public function store()
     {
-        News::create($request->all());
-        return redirect('/');
+
     }
 
     /**

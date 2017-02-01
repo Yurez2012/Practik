@@ -100,6 +100,22 @@ class AdminController extends Controller
         return view('admin.news', compact('news'));
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     *
+     * create new news
+     */
+
+    public function addNews()
+    {
+        return view('admin.add');
+    }
+
+    public function storeNews(NewsRequest $request)
+    {
+        News::create($request->all());
+        return redirect('/');
+    }
 
     /**
      * @param $id
@@ -114,6 +130,14 @@ class AdminController extends Controller
         return view('admin.editNews', compact('news'));
     }
 
+    /**
+     * @param NewsRequest $request
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     *
+     * update news from admin panel
+     */
+
     public function updateNews(NewsRequest $request, $id)
     {
         $news = News::findOrFail($id);
@@ -121,9 +145,17 @@ class AdminController extends Controller
         return redirect('auth/admin/news');
     }
 
+    /**
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     *
+     * delete news
+     */
+
     public function destroyNews($id)
     {
-        dd($id);
+        $news = News::findOrFail($id);
+        $news->delete();
         return redirect('auth/admin/news');
     }
 
