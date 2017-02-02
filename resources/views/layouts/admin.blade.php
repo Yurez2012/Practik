@@ -153,19 +153,43 @@
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav side-nav">
                 <li class="active">
-                    <a href="{{ URL('auth/admin') }}"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
+                    <a href="{{ URL('auth/admin') }}"><i class="fa fa-fw fa-dashboard"></i> Admin Panel</a>
                 </li>
                 <li>
-                    <a href="{{ URL('auth/admin/news/add') }}">New News</a>
-                </li>
-                <li>
-                    <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> News <i class="fa fa-fw fa-caret-down"></i></a>
-                    <ul id="demo" class="collapse">
+                    <a href="javascript:;" data-toggle="collapse" data-target="#news"><i class="fa fa-newspaper-o"></i> News <i class="fa fa-fw fa-caret-down"></i></a>
+                    <ul id="news" class="collapse">
                         <li>
-                            <a href="#">All News</a>
+                            <a href="{{ URL('auth/admin/news/index') }}"><i class="fa fa-archive" aria-hidden="true"></i> All News </a>
                         </li>
                         <li>
-                            <a href="#">New News</a>
+                            <a href="{{ URL('auth/admin/news/create') }}"><i class="fa fa-file-o" aria-hidden="true"></i>
+                                New News</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="javascript:;" data-toggle="collapse" data-target="#category"><i class="fa fa-database" aria-hidden="true"></i>
+                        Category <i class="fa fa-fw fa-caret-down"></i></a>
+                    <ul id="category" class="collapse">
+                        <li>
+                            <a href="{{ URL('auth/admin/category') }}"><i class="fa fa-archive" aria-hidden="true"></i> All Category </a>
+                        </li>
+                        <li>
+                            <a href="{{ URL('auth/admin/category/create') }}"><i class="fa fa-file-o" aria-hidden="true"></i>
+                                New Category</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="javascript:;" data-toggle="collapse" data-target="#menu"><i class="fa fa-folder-o" aria-hidden="true"></i>
+                        Menu <i class="fa fa-fw fa-caret-down"></i></a>
+                    <ul id="menu" class="collapse">
+                        <li>
+                            <a href="{{ URL('auth/admin/menu/index') }}"><i class="fa fa-archive" aria-hidden="true"></i> All Menu </a>
+                        </li>
+                        <li>
+                            <a href="{{ URL('auth/admin/menu/create') }}"><i class="fa fa-file-o" aria-hidden="true"></i>
+                                New Menu</a>
                         </li>
                     </ul>
                 </li>
@@ -186,10 +210,10 @@
 <!-- /#wrapper -->
 
 <!-- jQuery -->
-<script src="{{ URL::asset('js/jquery.js') }}"></script>
+<script src="{{ URL::asset('assets/js/jquery.js') }}"></script>
 
 <!-- Bootstrap Core JavaScript -->
-<script src="{{ URL::asset('js/bootstrap.min.js') }}"></script>
+<script src="{{ URL::asset('assets/js/bootstrap.min.js') }}"></script>
 
 <!-- Morris Charts JavaScript -->
 <script src="{{ URL::asset('js/plugins/morris/raphael.min.js') }}"></script>

@@ -1,17 +1,16 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
 use App\Category;
-use App\Http\Requests\CategoryRequest;
 use App\Http\Requests\NewsRequest;
-use App\Menu;
 use App\News;
 use Illuminate\Http\Request;
 
+use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class AdminController extends Controller
+class NewsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,11 +19,14 @@ class AdminController extends Controller
      */
     public function index()
     {
-        //increment news from count news
-        $count['news'] = count(News::all());
-        $count['category'] = count(Category::all());
-        $count['menu'] = count(Menu::all());
-        return view('admin.index', compact('count'));
+        $news = News::all();
+        return view('news.news', compact('news'));
+    }
+
+    public function indexAdmin()
+    {
+        $news = News::all();
+        return view('admin.news.news', compact('news'));
     }
 
     /**
@@ -34,7 +36,8 @@ class AdminController extends Controller
      */
     public function create()
     {
-        //
+        $category = Category::all();
+        return view('admin.news.add', compact('category'));
     }
 
     /**
@@ -43,9 +46,10 @@ class AdminController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(NewsRequest $request)
     {
-        //
+        News::create($request->all());
+        return redirect('auth/admin/news');
     }
 
     /**
@@ -67,7 +71,9 @@ class AdminController extends Controller
      */
     public function edit($id)
     {
-
+        $category = Category::all();
+        $news = News::findOrFail($id);
+        return view('admin.news.editNews', compact('news', 'category'));
     }
 
     /**
@@ -77,9 +83,11 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(NewsRequest $request, $id)
     {
-        //
+        $news = News::findOrFail($id);
+        $news->update($request->all());
+        return redirect('auth/admin/news/index');
     }
 
     /**
@@ -90,9 +98,16 @@ class AdminController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $news = News::findOrFail($id);
+        $news->delete();
+        return redirect('auth/admin/news/index');
     }
-
-
-
 }
+
+
+
+
+
+
+
+

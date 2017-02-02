@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-class NewsRequest extends Request
+class MenuRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,10 +24,7 @@ class NewsRequest extends Request
     public function rules()
     {
         return [
-            'title' => 'min:5|required|string',
-            'text' => 'min:5|required|string',
-            'img' => 'required|image:png,jpg',
-            'category' => 'required|min:3|string',
+            'name' => 'min:3|required|string'
         ];
     }
 }

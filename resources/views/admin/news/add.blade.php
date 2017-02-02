@@ -7,11 +7,19 @@
 
         <hr />
 
-            {!! Form::open(['url' => 'auth/admin/news/add', 'enctype' => 'multipart/form-data']) !!}
+            {!! Form::open(['url' => 'auth/admin/news', 'enctype' => 'multipart/form-data']) !!}
 
             <div class="form-group">
                 {!! Form::label('title', 'Title') !!}
                 {!! Form::text('title', 'Title', ['class' => 'form-control']) !!}
+            </div>
+            <div class="form-group">
+                <label for="sel1">Category</label>
+                <select name="category" class="form-control" id="sel1">
+                    @foreach($category as $item)
+                        <option>{{ $item->category }}</option>
+                    @endforeach
+                </select>
             </div>
             <div class="form-group">
                 {!! Form::label('text', 'Text') !!}

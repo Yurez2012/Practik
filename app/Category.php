@@ -4,15 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class News extends Model
+class Category extends Model
 {
-    protected $fillable = [
-        'title',
-        'text',
-        'img',
-        'category',
-    ];
 
+    protected $fillable = [
+        'category'
+    ];
 
     public function user()
     {
@@ -24,10 +21,9 @@ class News extends Model
         return $this->hasOne('App\Menu');
     }
 
-    public function category()
+    public function news()
     {
-        return $this->hasOne('App\Category');
+        return $this->hasOne('App\News');
     }
-
 
 }

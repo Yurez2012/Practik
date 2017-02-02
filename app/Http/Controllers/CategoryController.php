@@ -1,17 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
 use App\Category;
 use App\Http\Requests\CategoryRequest;
-use App\Http\Requests\NewsRequest;
-use App\Menu;
-use App\News;
 use Illuminate\Http\Request;
 
+use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class AdminController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,11 +18,8 @@ class AdminController extends Controller
      */
     public function index()
     {
-        //increment news from count news
-        $count['news'] = count(News::all());
-        $count['category'] = count(Category::all());
-        $count['menu'] = count(Menu::all());
-        return view('admin.index', compact('count'));
+        $category = Category::all();
+        return view('admin.category.category', compact('category'));
     }
 
     /**
@@ -34,7 +29,7 @@ class AdminController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.category.categoryAdd');
     }
 
     /**
@@ -43,9 +38,10 @@ class AdminController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CategoryRequest $request)
     {
-        //
+        Category::create($request->all());
+        return redirect('auth/admin/category');
     }
 
     /**
@@ -67,7 +63,8 @@ class AdminController extends Controller
      */
     public function edit($id)
     {
-
+        $category = Category::findOrFail($id);
+        return view('admin.category.edit', compact('category'));
     }
 
     /**
@@ -77,9 +74,11 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CategoryRequest $request, $id)
     {
-        //
+        $category = Category::findOrFail($id);
+        $category->update($request->all());
+        return redirect('auth/admin/category');
     }
 
     /**
@@ -90,9 +89,11 @@ class AdminController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $category = Category::findOrFail($id);
+        $category->delete();
+        return redirect('auth/admin/category');
     }
 
 
-
 }
+

@@ -7,11 +7,19 @@
 
         <hr />
 
-            {!! Form::model($news, array('enctype' => 'multipart/form-data', 'url' => 'auth/admin/news/update/'.$news->id, $news->id) )  !!}
+                {!! Form::model($news, ['enctype' => 'multipart/form-data','method' => 'PATCH', 'route' => ['auth.admin.news.update', $news->id]]) !!}
 
                 <div class="form-group">
                     {!! Form::label('title', 'Title') !!}
                     {!! Form::text('title', null, ['class' => 'form-control']) !!}
+                </div>
+                <div class="form-group">
+                    <label for="sel1">Category</label>
+                    <select name="category" class="form-control" id="sel1">
+                        @foreach($category as $item)
+                            <option>{{ $item->category }}</option>
+                        @endforeach
+                    </select>
                 </div>
                 <div class="form-group">
                     {!! Form::label('text', 'Text') !!}

@@ -11,7 +11,6 @@
 |
 */
 
-
 use Illuminate\Support\Facades\Auth;
 
 Route::get('/', 'IndexController@index');
@@ -25,22 +24,18 @@ Route::get('auth/logout', 'Auth\AuthController@getLogout');
 Route::get('auth/register', 'Auth\AuthController@getRegister');
 Route::post('auth/register', 'Auth\AuthController@postRegister');
 
-//News
+//News index
+Route::get('/', 'NewsController@index');
 
-Route::get('/', 'News\NewsController@index');
-
-
+// Guard auth user
 Route::group(['middleware' => 'auth'], function () {
 
-    //Admin Panel
+    //Admin Panel CRUD Category News Menu
     Route::get('auth/admin', 'Admin\AdminController@index');
-    Route::get('auth/admin/news', 'Admin\AdminController@news');
-    Route::get('auth/admin/news/{id}/edit', 'Admin\AdminController@editNews');
-    Route::post('auth/admin/news/update/{id}', 'Admin\AdminController@updateNews');
-    Route::post('auth/admin/news/delete/{id}', 'Admin\AdminController@destroyNews');
-    Route::get('auth/admin/news/add', 'Admin\AdminController@addNews');
-    Route::post('auth/admin/news/add', 'Admin\AdminController@storeNews');
-
-    //News
+    Route::get('auth/admin/news/index', 'NewsController@indexAdmin');
+    Route::resource('auth/admin/news', 'NewsController');
+    Route::resource('auth/admin/category', 'CategoryController');
+    Route::get('auth/admin/menu/index', 'MenuController@indexAdmin');
+    Route::resource('auth/admin/menu', 'MenuController');
 
 });

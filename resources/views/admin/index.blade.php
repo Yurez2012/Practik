@@ -8,22 +8,20 @@
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="page-header">
-                    Dashboard <small>Statistics Overview</small>
+                    Admin <small>panel</small>
                 </h1>
-                <ol class="breadcrumb">
-                    <li class="active">
-                        <i class="fa fa-dashboard"></i> Dashboard
-                    </li>
-                </ol>
             </div>
         </div>
         <!-- /.row -->
 
-        <div class="row">
-            <div class="col-lg-12">
+        <div id="messageBox" class="row">
+            <div  class="col-lg-12">
                 <div class="alert alert-info alert-dismissable">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                    <i class="fa fa-info-circle"></i>  <strong>Like SB Admin?</strong> Try out <a href="http://startbootstrap.com/template-overviews/sb-admin-2" class="alert-link">SB Admin 2</a> for additional features!
+
+                    <i class="fa fa-info-circle"></i>
+                    <strong>
+                        lol
+                    </strong>
                 </div>
             </div>
         </div>
@@ -35,15 +33,15 @@
                     <div class="panel-heading">
                         <div class="row">
                             <div class="col-xs-3">
-                                <i class="fa fa-comments fa-5x"></i>
+                                <i class="fa fa-database fa-5x"></i>
                             </div>
                             <div class="col-xs-9 text-right">
-                                <div class="huge">0</div>
-                                <div>Comments</div>
+                                <div class="huge">{{ $count['category'] }}</div>
+                                <div>Category</div>
                             </div>
                         </div>
                     </div>
-                    <a href="#">
+                    <a href="{{ URL('auth/admin/category') }}">
                         <div class="panel-footer">
                             <span class="pull-left">View Details</span>
                             <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -57,15 +55,15 @@
                     <div class="panel-heading">
                         <div class="row">
                             <div class="col-xs-3">
-                                <i class="fa fa-tasks fa-5x"></i>
+                                <i class="fa fa-newspaper-o fa-5x"></i>
                             </div>
                             <div class="col-xs-9 text-right">
-                                <div class="huge">{{ $count }}</div>
+                                <div class="huge">{{ $count['news'] }}</div>
                                 <div>New News</div>
                             </div>
                         </div>
                     </div>
-                    <a href="{{ URL('auth/admin/news') }}">
+                    <a href="{{ URL('auth/admin/news/index') }}">
                         <div class="panel-footer">
                             <span class="pull-left">View Details</span>
                             <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -79,15 +77,15 @@
                     <div class="panel-heading">
                         <div class="row">
                             <div class="col-xs-3">
-                                <i class="fa fa-shopping-cart fa-5x"></i>
+                                <i class="fa fa-folder-o fa-5x"></i>
                             </div>
                             <div class="col-xs-9 text-right">
-                                <div class="huge">0</div>
-                                <div>New Orders!</div>
+                                <div class="huge">{{ $count['menu'] }}</div>
+                                <div>Menu</div>
                             </div>
                         </div>
                     </div>
-                    <a href="#">
+                    <a href="{{ URL('auth/admin/menu/index') }}">
                         <div class="panel-footer">
                             <span class="pull-left">View Details</span>
                             <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>

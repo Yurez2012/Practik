@@ -8,36 +8,33 @@
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="page-header">
-                    Dashboard <small>Statistics Overview</small>
+                    News
                 </h1>
-                <ol class="breadcrumb">
-                    <li class="active">
-                        <i class="fa fa-dashboard"></i> Dashboard
-                    </li>
-                </ol>
             </div>
         </div>
         <!-- /.row -->
 
-        <div class="row">
-            <div class="col-lg-12">
+        <div id="messageBox" class="row">
+            <div  class="col-lg-12">
                 <div class="alert alert-info alert-dismissable">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                    <i class="fa fa-info-circle"></i>  <strong>News Update non work</strong>
+
+                    <i class="fa fa-info-circle"></i>
+                    <strong>
+                        {{ session('newNews') }}
+                    </strong>
                 </div>
             </div>
         </div>
         <!-- /.row -->
 
         <div class="row">
-            <div class="col-lg-6">
-                <h2>Contextual Classes</h2>
-                <div class="table-fluid">
-                    <table class="table table-bordered table-hover table-striped">
+            <div class="col-lg-12">
+                    <table class="table table-bordered">
                         <thead>
                         <tr>
                             <th>id</th>
                             <th>title</th>
+                            <th>category</th>
                             <th>text</th>
                             <th>image</th>
                             <th>edit</th>
@@ -48,22 +45,20 @@
                             @foreach($news as $item)
                                 <tr>
                                     <td>{{ $item->id }}</td>
-                                    <td>{{ substr($item->text, 0, 25) }}</td>
+                                    <td>{{ substr($item->title, 0, 25) }}</td>
+                                    <td>{{ substr($item->category, 0, 25) }}</td>
                                     <td>{{ substr($item->text, 0, 50) }}</td>
                                     <td>{{ substr($item->img, 27) }}</td>
                                     <td>{!! link_to('auth/admin/news/'.$item->id.'/edit', $title = 'Edit', ['class' => 'btn btn-primary submit-reg'], $attributes = [], $secure = []) !!}</td>
                                     <td>
-                                        {!! Form::open(['url' => 'auth/admin/news/delete/'.$item->id]) !!}
-
+                                        {!! Form::model($item, ['method' => 'DELETE', 'route' => ['auth.admin.news.destroy', $item->id]]) !!}
                                             {!! Form::submit('Delete', ['class' => 'btn btn-primary submit-reg']) !!}
-
                                         {!! Form::close() !!}
                                     </td>
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
-                </div>
             </div>
 
         </div>

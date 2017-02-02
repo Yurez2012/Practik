@@ -1,13 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\News;
+namespace App\Http\Controllers;
 
-use App\Http\Requests\NewsRequest;
-use App\News;
+use App\Http\Requests\MenuRequest;
+use App\Menu;
 use Illuminate\Http\Request;
+
+use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class NewsController extends Controller
+class MenuController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +18,13 @@ class NewsController extends Controller
      */
     public function index()
     {
-        $news = News::all();
-        return view('news.news', compact('news'));
+
+    }
+
+    public function indexAdmin()
+    {
+        $menu = Menu::all();
+        return view('admin.menu.index', compact('menu'));
     }
 
     /**
@@ -27,7 +34,7 @@ class NewsController extends Controller
      */
     public function create()
     {
-
+        return view('admin.menu.create');
     }
 
     /**
@@ -36,10 +43,10 @@ class NewsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-
-    public function store()
+    public function store(MenuRequest $request)
     {
-
+        Menu::create($request->all());
+        return redirect('auth/admin/menu/index');
     }
 
     /**
@@ -61,7 +68,8 @@ class NewsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $menu = Menu::findOrFail($id);
+        return view('admin.menu.edit', compact('menu'));
     }
 
     /**
@@ -71,9 +79,11 @@ class NewsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(MenuRequest $request, $id)
     {
-        //
+        $menu = Menu::findOrFail($id);
+        $menu->update($request->all());
+        return redirect('auth/admin/menu/index');
     }
 
     /**
@@ -84,6 +94,8 @@ class NewsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $menu = Menu::findOrFail($id);
+        $menu->delete();
+        return redirect('auth/admin/menu/index');
     }
 }
