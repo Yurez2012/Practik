@@ -38,9 +38,9 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 @foreach($menu as $item)
-                     <li>
-                         <a href="{{ URL($item->url) }}">{{ $item->name }}</a>
-                     </li>
+                    <li>
+                        <a href="{{ URL($item->url) }}">{{ $item->name }}</a>
+                    </li>
                 @endforeach
             </ul>
         </div>
@@ -55,57 +55,12 @@
     <div class="row">
 
         <!-- Blog Entries Column -->
-        <div class="col-md-8">
+        <div class="col-md-12">
 
             @yield('content')
 
-
         </div>
 
-        <!-- Blog Sidebar Widgets Column -->
-        <div class="col-md-4">
-
-            <!-- Blog Search Well -->
-            <div class="well">
-
-                <h4>Blog Search</h4>
-                <form method="POST" action="{{ URL('/search') }}">
-                    {!! Form::token() !!}
-                    <div class="input-group">
-                        <input name="search" type="text" class="form-control">
-                        <span class="input-group-btn">
-                            <input class="btn btn-default" type="submit" value="Search">
-                        </span>
-                    </div>
-                </form>
-                <!-- /.input-group -->
-            </div>
-
-            <!-- Blog Categories Well -->
-            <div class="well">
-                <h4>Blog Categories</h4>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <ul class="list-unstyled">
-                            @foreach($category as $item)
-                                <li>
-                                    <a href={{"/category/".$item->id }}>{{ $item->category }}</a>
-                                </li>
-                            @endforeach
-                        </ul>
-                    </div>
-                    <!-- /.col-lg-6 -->
-                </div>
-                <!-- /.row -->
-            </div>
-
-            <!-- Side Widget Well -->
-            <div class="well">
-                <h4>Side Widget Well</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, perspiciatis adipisci accusamus laudantium odit aliquam repellat tempore quos aspernatur vero.</p>
-            </div>
-
-        </div>
 
     </div>
     <!-- /.row -->

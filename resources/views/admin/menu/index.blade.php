@@ -43,6 +43,7 @@
                         <tr>
                             <td>{{ $item->id }}</td>
                             <td>{{ substr($item->name, 0, 25) }}</td>
+                            <td>{{ substr($item->url, 0, 25) }}</td>
                             <td>{!! link_to('auth/admin/menu/'.$item->id.'/edit', $title = 'Edit', ['class' => 'btn btn-primary submit-reg'], $attributes = [], $secure = []) !!}</td>
                             <td>
                                 {!! Form::model($item, ['method' => 'DELETE', 'route' => ['auth.admin.menu.destroy', $item->id]]) !!}

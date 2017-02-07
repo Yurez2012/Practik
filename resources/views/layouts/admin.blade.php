@@ -46,7 +46,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{{ URL('auth/admin') }}">Admin</a>
+            <a class="navbar-brand" href="{{ URL('/') }}">WEBLOG</a>
         </div>
         <!-- Top Menu Items -->
         <ul class="nav navbar-right top-nav">

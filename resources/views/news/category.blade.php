@@ -21,18 +21,17 @@
             <a href="{{ URL('/news/'.$item->id) }}">{{ $item->category }}</a>
         </p>
         <p><span class="glyphicon glyphicon-time"></span> Posted {{ $item->updated_at }}</p>
-        <img class="img-responsive" width="100%" src="{!! URL::asset("assets/image/".$item->img) !!}" alt="{{ $item->img }}">
+        <hr>
+        <img class="img-responsive" src="{!! URL::asset("assets/image/".$item->img) !!}" alt="{{ $item->img }}">
+        <hr>
         <p>{{ $item->text }}</p>
         <a class="btn btn-primary" href="{{ URL('/news/'.$item->id) }}">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
 
         <hr>
     @endforeach
 
-
     <!-- Pager -->
     {!! $news->render() !!}
-
-
 
 
 

@@ -12,19 +12,21 @@
                 </h1>
             </div>
         </div>
+
         <!-- /.row -->
-
-        <div id="messageBox" class="row">
-            <div  class="col-lg-12">
-                <div class="alert alert-info alert-dismissable">
-
-                    <i class="fa fa-info-circle"></i>
-                    <strong>
-                        {{ session('newNews') }}
-                    </strong>
+        @if(!empty($cookie['NewsUpdate']) | !empty($cookie['NewsCreate']) | !empty($cookie['NewsDelete']))
+            <div id="messageBox" class="row">
+                <div  class="col-lg-12">
+                    <div class="alert alert-info alert-dismissable text-center">
+                        <strong>
+                            {{ $cookie['NewsUpdate'] }}
+                            {{ $cookie['NewsDelete'] }}
+                            {{ $cookie['NewsCreate'] }}
+                        </strong>
+                    </div>
                 </div>
             </div>
-        </div>
+        @endif
         <!-- /.row -->
 
         <div class="row">
@@ -46,7 +48,7 @@
                                 <tr>
                                     <td>{{ $item->id }}</td>
                                     <td>{{ substr($item->title, 0, 25) }}</td>
-                                    <td>{{ substr($item->category, 0, 25) }}</td>
+                                    <td>{{ substr($item->category, 0, 30) }}</td>
                                     <td>{{ substr($item->text, 0, 50) }}</td>
                                     <td>{{ substr($item->img, 27) }}</td>
                                     <td>{!! link_to('auth/admin/news/'.$item->id.'/edit', $title = 'Edit', ['class' => 'btn btn-primary submit-reg'], $attributes = [], $secure = []) !!}</td>
@@ -59,6 +61,8 @@
                             @endforeach
                         </tbody>
                     </table>
+                    <!-- Pager -->
+                    {!! $news->render() !!}
             </div>
 
         </div>

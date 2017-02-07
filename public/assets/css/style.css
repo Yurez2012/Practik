@@ -1,7 +1,5 @@
-.reg {
-    width: 30%;
-}
-
-.submit-reg {
-    width: 100%;
+body {
+    background: url('../img/bhg.png');
+    color: forestgreen;
+    font-family: sans-serif;
 }

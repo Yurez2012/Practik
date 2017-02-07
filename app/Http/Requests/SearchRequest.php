@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-class MenuRequest extends Request
+class SearchRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,7 @@ class MenuRequest extends Request
     public function rules()
     {
         return [
-            'name' => 'min:3|required|string',
-            'url' => '|required|string'
+            'search' => 'required'
         ];
     }
 }

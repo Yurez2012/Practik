@@ -13,6 +13,10 @@
             {!! Form::label('name', 'Menu') !!}
             {!! Form::text('name', 'Name', ['class' => 'form-control']) !!}
         </div>
+        <div class="form-group">
+            {!! Form::label('url', 'Url') !!}
+            {!! Form::text('url', 'Url', ['class' => 'form-control']) !!}
+        </div>
         {!! Form::submit('Add Menu', ['class' => 'btn btn-primary submit-reg']) !!}
 
         {!! Form::close() !!}

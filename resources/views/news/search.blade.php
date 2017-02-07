@@ -3,13 +3,10 @@
 
 @section('content')
 
-
-    <h1 class="page-header">
-        News
-        <small>home</small>
-    </h1>
-
-    <!-- First Blog Post -->
+@if($search == null)
+    <h2>News not found</h2>
+@endif
+@if($search != null)
     @foreach($news as $item)
         <h2>
             <a href="{{ URL('/news/'.$item->id) }}">{{ $item->title }}</a>
@@ -28,13 +25,8 @@
         <hr>
     @endforeach
 
-
     <!-- Pager -->
     {!! $news->render() !!}
-
-
-
-
-
+@endif
 
 @stop
