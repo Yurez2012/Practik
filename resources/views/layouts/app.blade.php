@@ -5,6 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="_token" content="{!! $token !!}"/>
 
     <!-- include boodstrap theme, style, js -->
     <!-- Latest compiled and minified CSS -->
@@ -12,11 +13,11 @@
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
     <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <!-- end boodstrap -->
     <link rel="stylesheet" href={{ URL::asset('assets/css/style.css') }}>
     <!-- Custom CSS -->
     <link href={{ URL::asset("assets/css/blog-home.css") }} rel="stylesheet">
+    <!-- Custom Fonts -->
+    <link href="{{ URL::asset('assets/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
     <title>Document</title>
 </head>
 <body>
@@ -50,7 +51,7 @@
 </nav>
 
 <!-- Page Content -->
-<div class="container">
+<div class="container hr_footer">
 
     <div class="row">
 
@@ -59,33 +60,19 @@
 
             @yield('content')
 
-
         </div>
 
         <!-- Blog Sidebar Widgets Column -->
         <div class="col-md-4">
 
             <!-- Blog Search Well -->
-            <div class="well">
-
-                <h4>Blog Search</h4>
-                <form method="POST" action="{{ URL('/search') }}">
-                    {!! Form::token() !!}
-                    <div class="input-group">
-                        <input name="search" type="text" class="form-control">
-                        <span class="input-group-btn">
-                            <input class="btn btn-default" type="submit" value="Search">
-                        </span>
-                    </div>
-                </form>
-                <!-- /.input-group -->
-            </div>
+            @include('.news._form_search')
 
             <!-- Blog Categories Well -->
             <div class="well">
-                <h4>Blog Categories</h4>
+                <h4>Categories</h4>
                 <div class="row">
-                    <div class="col-lg-12">
+                    <div class="col-lg-6">
                         <ul class="list-unstyled">
                             @foreach($category as $item)
                                 <li>
@@ -94,15 +81,33 @@
                             @endforeach
                         </ul>
                     </div>
+                    <div class="col-lg-6">
+                        <ul class="list-unstyled">
+                            @if(Auth::check())
+
+                                <li>
+                                    <a href="{{ URL('/auth/admin/') }}">Admin panel</a>
+                                </li>
+                                <hr>
+                                <li>
+                                    <a href="{{ URL('/auth/admin/category/create') }}">New Category</a>
+                                </li>
+                                <li>
+                                    <a href="{{ URL('/auth/admin/news/create') }}">New News</a>
+                                </li>
+                                <li>
+                                    <a href="{{ URL('/auth/admin/menu/create') }}">New Menu</a>
+                                </li>
+                                <hr>
+                                <li>
+                                    <a href="{{ URL('auth/logout') }}">Logout</a>
+                                </li>
+                            @endif
+                        </ul>
+                    </div>
                     <!-- /.col-lg-6 -->
                 </div>
                 <!-- /.row -->
-            </div>
-
-            <!-- Side Widget Well -->
-            <div class="well">
-                <h4>Side Widget Well</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, perspiciatis adipisci accusamus laudantium odit aliquam repellat tempore quos aspernatur vero.</p>
             </div>
 
         </div>
@@ -116,7 +121,7 @@
     <footer>
         <div class="row">
             <div class="col-lg-12">
-                <p>Copyright &copy; Your Website 2014</p>
+                <p>Copyright &copy; WEBLOG by Yurez 2017</p>
             </div>
             <!-- /.col-lg-12 -->
         </div>
@@ -127,10 +132,11 @@
 <!-- /.container -->
 
 <!-- jQuery -->
-<script src="js/jquery.js"></script>
+<script src="{{ URL::asset("assets/js/jquery.js") }}"></script>
+<script src="{{ URL::asset("assets/js/myjs.js") }}"></script>
 
 <!-- Bootstrap Core JavaScript -->
-<script src="js/bootstrap.min.js"></script>
+<script src="{{ URL::asset("assets/js/bootstrap.min.js") }}"></script>
 
 </body>
 </html>

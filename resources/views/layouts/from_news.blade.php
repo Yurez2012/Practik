@@ -17,6 +17,8 @@
     <link rel="stylesheet" href={{ URL::asset('assets/css/style.css') }}>
     <!-- Custom CSS -->
     <link href={{ URL::asset("assets/css/blog-home.css") }} rel="stylesheet">
+    <!-- Custom Fonts -->
+    <link href="{{ URL::asset('assets/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
     <title>Document</title>
 </head>
 <body>
@@ -71,7 +73,7 @@
     <footer>
         <div class="row">
             <div class="col-lg-12">
-                <p>Copyright &copy; Your Website 2014</p>
+                <p>Copyright &copy; WEBLOG by Yurez 2017</p>
             </div>
             <!-- /.col-lg-12 -->
         </div>

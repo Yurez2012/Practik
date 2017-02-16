@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Http\Requests\LikeRequest;
 use App\Http\Requests\NewsRequest;
 use App\Http\Requests\SearchRequest;
+use App\Like;
 use App\Menu;
 use App\News;
 use Illuminate\Http\Request;
@@ -12,6 +14,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\View;
 use Illuminate\Pagination\Paginator;
@@ -24,9 +27,11 @@ class NewsController extends Controller
     {
         $category = Category::all();
         $menu = Menu::all();
+        $token = Crypt::encrypt(csrf_token());
 
         View::share('menu', $menu);
         View::share('category', $category);
+        View::share('token', $token);
     }
 
     /**
@@ -38,8 +43,8 @@ class NewsController extends Controller
 
     public function index()
     {
-        $news = News::orderBy('updated_at', 'desc')->paginate(5);
-        return view('news.news', compact('news', 'pagination'));
+        $news = News::orderBy('date_to_add', 'desc')->paginate(5);
+        return view('news.news', compact('news'));
     }
 
     /**
@@ -50,7 +55,7 @@ class NewsController extends Controller
 
     public function indexAdmin()
     {
-        $news = News::orderBy('updated_at', 'desc')->paginate(10);
+        $news = News::orderBy('date_to_add', 'desc')->paginate(10);
         return view('admin.news.news', compact('news'));
     }
 
@@ -95,6 +100,11 @@ class NewsController extends Controller
     public function show($id)
     {
         $news = News::findOrFail($id);
+
+        //path show increment viewNews
+        $news->show = $news->show + 1;
+        $news->save();
+
         return view('news.show', compact('news'));
     }
 
@@ -121,7 +131,16 @@ class NewsController extends Controller
     public function update(NewsRequest $request, $id)
     {
         $news = News::findOrFail($id);
-        $news->update($request->all());
+
+        //upload img from server
+
+        $request = $request->all();
+
+        $request['img'] = $_FILES['img']['name'];
+        $path_img = $_SERVER['DOCUMENT_ROOT'].'/assets/image/'.$_FILES['img']['name'];
+        move_uploaded_file($_FILES['img']['tmp_name'], $path_img);
+        //end upload
+        $news->update($request);
         return redirect('auth/admin/news/index');
     }
 
@@ -147,7 +166,7 @@ class NewsController extends Controller
     public function category($id)
     {
         $category = Category::where('id', $id)->get();
-        $news = News::where('category', $category[0]['category'])->orderBy('updated_at', 'desc')->paginate(5);
+        $news = News::where('category', $category[0]['category'])->orderBy('date_to_add', 'desc')->paginate(5);
         return view('news.category', compact('news'));
     }
 
@@ -157,18 +176,30 @@ class NewsController extends Controller
      *
      */
 
+
     public function search(SearchRequest $request)
     {
         $search = $request['search'];
         if(!empty($search)) {
             $news = News::where('title', 'LIKE', '%'.$search.'%')->paginate(5);
+            if(empty($news['0'])) {
+                $search = null;
+            }
+
         }else {
             $search = null;
         }
 
-        return view('news.search', compact('news', 'search'));
+        return  view('news.search', compact('news', 'search'));
+
     }
 
+    public function like(LikeRequest $request)
+    {
+
+        Like::create($request->all());
+
+    }
 
 }
 

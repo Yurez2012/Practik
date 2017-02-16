@@ -37,8 +37,6 @@
                             <th>id</th>
                             <th>title</th>
                             <th>category</th>
-                            <th>text</th>
-                            <th>image</th>
                             <th>edit</th>
                             <th>delete</th>
                         </tr>
@@ -47,10 +45,8 @@
                             @foreach($news as $item)
                                 <tr>
                                     <td>{{ $item->id }}</td>
-                                    <td>{{ substr($item->title, 0, 25) }}</td>
+                                    <td>{{ $item->title }}</td>
                                     <td>{{ substr($item->category, 0, 30) }}</td>
-                                    <td>{{ substr($item->text, 0, 50) }}</td>
-                                    <td>{{ substr($item->img, 27) }}</td>
                                     <td>{!! link_to('auth/admin/news/'.$item->id.'/edit', $title = 'Edit', ['class' => 'btn btn-primary submit-reg'], $attributes = [], $secure = []) !!}</td>
                                     <td>
                                         {!! Form::model($item, ['method' => 'DELETE', 'route' => ['auth.admin.news.destroy', $item->id]]) !!}

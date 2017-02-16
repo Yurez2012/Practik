@@ -27,4 +27,5 @@ class SearchRequest extends Request
             'search' => 'required'
         ];
     }
+
 }

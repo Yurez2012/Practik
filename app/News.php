@@ -2,15 +2,18 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class News extends Model
 {
+
     protected $fillable = [
         'title',
         'text',
         'img',
         'category',
+        'date_to_add'
     ];
 
 
@@ -28,6 +31,7 @@ class News extends Model
     {
         return $this->hasOne('App\Category');
     }
+
 
 
 }

@@ -4,36 +4,45 @@
 @section('content')
 
 
-    <h1 class="page-header">
-        News
-        <small>home</small>
-    </h1>
-
     <!-- First Blog Post -->
     @foreach($news as $item)
-        <h2>
-            <a href="{{ URL('/news/'.$item->id) }}">{{ $item->title }}</a>
-        </h2>
-        <h2>
-            <a href="#"></a>
-        </h2>
-        <p class="lead">
-            <a href="{{ URL('/news/'.$item->id) }}">{{ $item->category }}</a>
-        </p>
-        <p><span class="glyphicon glyphicon-time"></span> Posted {{ $item->updated_at }}</p>
-        <hr>
-        <img class="img-responsive" src="{!! URL::asset("assets/image/".$item->img) !!}" alt="{{ $item->img }}">
-        <hr>
-        <p>{{ $item->text }}</p>
-        <a class="btn btn-primary" href="{{ URL('/news/'.$item->id) }}">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
-
-        <hr>
+        <div class="container-fluid news">
+            <h3>
+                <a class="title" href="{{ URL('/news/'.$item->id) }}">{{ $item->title }}</a>
+            </h3>
+            <div class="row">
+                <div class="col-md-6">
+                    <img class="img" width="100%" height="240px" src="{!! URL::asset("assets/image/".$item->img) !!}" alt="{{ $item->img }}">
+                </div>
+                <div class="col-md-6">
+                    <p class="lead">
+                        Category: <span>{{ $item->category }}</span>
+                    </p>
+                    <p class="text-content text-justify">
+                        {{ mb_substr($item->text, 0, 395) }} . . . </p>
+                </div>
+            </div>
+            <div class="row button">
+                <div class="col-md-6">
+                    <p>
+                        <span class="glyphicon glyphicon-time"></span> {!! date("j F", strtotime($item->date_to_add)) !!}&nbsp;&nbsp;
+                        <i class="glyphicon fa fa-eye fa" aria-hidden="true"></i>&nbsp;{!! $item->show !!}
+                    </p>
+                </div>
+                <div class="col-md-6 text-right">
+                    <a class="btn read-button" href="{{ URL('/news/'.$item->id) }}">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
+                </div>
+            </div>
+        </div>
     @endforeach
 
+
     <!-- Pager -->
-    {!! $news->render() !!}
-
-
+    <div class="row">
+        <div class="col-md-12 text-center">
+            {!! $news->render() !!}
+        </div>
+    </div>
 
 
 @stop

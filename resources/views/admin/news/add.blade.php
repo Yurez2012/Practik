@@ -29,6 +29,10 @@
                 {!! Form::label('image', 'Image') !!}
                 {!! Form::file('img', ['class' => 'form-control-file']) !!}
             </div>
+            <div class="form-group">
+                {!! Form::label('date_to_add', 'Date') !!}
+                {!! Form::date('date_to_add', Carbon\Carbon::now(), ['class' => 'date form-control']) !!}
+            </div>
 
             {!! Form::submit('Add News', ['class' => 'btn btn-primary submit-reg']) !!}
 

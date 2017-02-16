@@ -3,3 +3,118 @@ body {
     color: forestgreen;
     font-family: sans-serif;
 }
+
+.news {
+    background: #feb53d;
+    border-bottom: 1px solid #0f1c08;
+}
+
+.news .button {
+    padding: 5px 0px;
+}
+
+.news .button p {
+    margin-top: 15px;
+    color: #1d320e;
+}
+
+.news .read-button {
+    background: #1d320e;
+    color: #feb53d;
+    border: 1px solid #1d320e;
+}
+
+.news .read-button:hover {
+    color: #eb5201;
+}
+
+.news h3 {
+    margin-top: 18px;
+    margin-bottom: 25px;
+}
+
+.news .title {
+    color: #1d320e;
+    text-decoration: none;
+}
+
+.news .title:hover {
+    color: #38550f;
+}
+
+.news .text-content {
+    color: #38550f;
+}
+
+.news .lead {
+    color: #0f1c08;
+}
+
+.news .lead span {
+    color: #38550f;
+}
+
+.well {
+    background: #fe7e18;
+    border: 1px solid #fe7e18;
+    color: #0f1c08;
+}
+
+.well a {
+    color: #38550f;
+}
+
+.well a:hover {
+    color: #0f1c08;
+}
+
+.well input {
+    color: #0f1c08;
+    border: 1px solid #0f1c08;
+    background: #feb53d;
+}
+
+.well input:hover {
+    color: #38550f;
+    border: 1px solid #0f1c08;
+    background: #feb53d;
+}
+
+.well input:focus {
+    color: #38550f;
+    border: 1px solid #0f1c08;
+    background: #feb53d;
+}
+
+.well input:link {
+    color: #38550f;
+    border: 1px solid #0f1c08;
+    background: #feb53d;
+}
+
+.well input:target {
+    color: #38550f;
+    border: 1px solid #0f1c08;
+    background: #feb53d;
+}
+
+
+.line-footer {
+    border-bottom: 1px solid #0f1c08;
+}
+
+hr {
+    border: 1px solid #0f1c08;
+}
+
+#like {
+    cursor: pointer;
+}
+
+.like_passive {
+
+}
+
+.like_active{
+    color: #68780b;
+}

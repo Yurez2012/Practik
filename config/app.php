@@ -140,9 +140,11 @@ return [
         /*
          * include providers
          * include laravel form 5.1
+         * include raiting
          */
 
         Collective\Html\HtmlServiceProvider::class,
+        Cog\Likeable\Providers\LikeableServiceProvider::class,
 
         /*
          * Application Service Providers...

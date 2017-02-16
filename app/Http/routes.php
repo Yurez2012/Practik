@@ -11,7 +11,10 @@
 |
 */
 
+use App\Http\Requests\LikeRequest;
+use App\Like;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Request;
 
 //Auth routes
 Route::get('auth/login', 'Auth\AuthController@getLogin');
@@ -24,9 +27,14 @@ Route::post('auth/register', 'Auth\AuthController@postRegister');
 
 //News index
 Route::get('/', 'NewsController@index');
+Route::post('/like','NewsController@like');
+
 Route::get('/news/{id}', 'NewsController@show');
 Route::get('/category/{id}', 'NewsController@category');
-Route::post('/search', 'NewsController@search');
+Route::get('/search', 'NewsController@search');
+
+//Page
+Route::get('/about_as', 'PageController@aboutAs');
 
 // Guard auth user
 Route::group(['middleware' => 'auth'], function () {
