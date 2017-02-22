@@ -28,6 +28,7 @@ Route::post('auth/register', 'Auth\AuthController@postRegister');
 //News index
 Route::get('/', 'NewsController@index');
 Route::post('/like','NewsController@like');
+Route::delete('/like/delete','NewsController@likeDelete');
 
 Route::get('/news/{id}', 'NewsController@show');
 Route::get('/category/{id}', 'NewsController@category');
@@ -47,5 +48,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('auth/admin/category', 'CategoryController');
     Route::get('auth/admin/menu/index', 'MenuController@indexAdmin');
     Route::resource('auth/admin/menu', 'MenuController');
+    Route::get('auth/admin/diagram/user', 'DiagramController@index');
 
 });

@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\diagram;
 use App\Http\Requests\LikeRequest;
 use App\Http\Requests\NewsRequest;
 use App\Http\Requests\SearchRequest;
 use App\Like;
+use App\LikeNews;
 use App\Menu;
 use App\News;
 use Illuminate\Http\Request;
@@ -16,6 +18,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\View;
 use Illuminate\Pagination\Paginator;
 
@@ -43,7 +46,24 @@ class NewsController extends Controller
 
     public function index()
     {
-        $news = News::orderBy('date_to_add', 'desc')->paginate(5);
+
+        // add news user db
+        $user['ip_user'] = $_SERVER['REMOTE_ADDR'];
+        $users = diagram::all();
+
+        if(empty($users[0])) { diagram::create($user); }
+
+        $true = null;
+        foreach ($users as $us) {
+            if($user['ip_user'] == $us->ip_user) {
+                $true = 1;
+            }
+        }
+
+        if($true != 1) { diagram::create($user); }
+        //end add new user
+
+        $news = LikeNews::orderBy('date_to_add', 'asc')->paginate(5);
         return view('news.news', compact('news'));
     }
 
@@ -101,7 +121,7 @@ class NewsController extends Controller
     {
         $news = News::findOrFail($id);
 
-        //path show increment viewNews
+        //view show increment viewNews
         $news->show = $news->show + 1;
         $news->save();
 
@@ -132,14 +152,13 @@ class NewsController extends Controller
     {
         $news = News::findOrFail($id);
 
-        //upload img from server
-
+        //update img from server
         $request = $request->all();
-
         $request['img'] = $_FILES['img']['name'];
         $path_img = $_SERVER['DOCUMENT_ROOT'].'/assets/image/'.$_FILES['img']['name'];
         move_uploaded_file($_FILES['img']['tmp_name'], $path_img);
         //end upload
+
         $news->update($request);
         return redirect('auth/admin/news/index');
     }
@@ -181,7 +200,7 @@ class NewsController extends Controller
     {
         $search = $request['search'];
         if(!empty($search)) {
-            $news = News::where('title', 'LIKE', '%'.$search.'%')->paginate(5);
+            $news = LikeNews::where('title', 'LIKE', '%'.$search.'%')->paginate(5);
             if(empty($news['0'])) {
                 $search = null;
             }
@@ -194,11 +213,38 @@ class NewsController extends Controller
 
     }
 
+    /**
+     * @param LikeRequest $request
+     *
+     * Like news
+     * Delete Like
+     */
+
     public function like(LikeRequest $request)
     {
 
-        Like::create($request->all());
+        $like = Like::all();
+        $request = $request->all();
 
+        if(!isset($like['0'])){
+            Like::create($request);
+        }
+
+        foreach ($like as $liked) {
+            if($liked->user_id == $request['user_id'] && $liked->news_id == $request['news_id']) {
+
+            }else {
+                Like::create($request);
+            }
+        }
+
+    }
+
+    public function likeDelete(LikeRequest $request)
+    {
+        $like = $request->all();
+        $like = Like::where('user_id', $like['user_id'])->where('news_id', $like['news_id']);
+        $like->delete();
     }
 
 }

@@ -30,6 +30,7 @@
     <footer>
 
     </footer>
+    <script src="{{ URL::asset("assets/js/myjs.js") }}"></script>
 </div>
 </body>
 </html>

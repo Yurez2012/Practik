@@ -10,7 +10,12 @@ class Like extends Model
     protected $fillable = [
         'news_id',
         'user_id',
-        'count'
+        'like_class'
     ];
+
+    public function news()
+    {
+        return $this->belongsTo('App\News');
+    }
 
 }

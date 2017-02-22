@@ -32,6 +32,10 @@ class News extends Model
         return $this->hasOne('App\Category');
     }
 
+    public function like()
+    {
+        return $this->hasMany('App\Like');
+    }
 
 
 }

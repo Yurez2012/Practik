@@ -10,8 +10,11 @@ $(document).ready(function(){
     $(document).on('click','.like_passive',function(){
 
         var news_id = $(this).attr('data-id');
+        var id = '#like_count'+ news_id;
         var user_id = $('#user_id').text();
-        var like_count = $('#like_count').text();
+        var like_count = $(id).text();
+        $(id).text(parseInt(like_count) + 1);
+        var like_class = 'like_active';
 
         $(this).removeClass('like_passive');
         $(this).addClass('like_active');
@@ -23,7 +26,7 @@ $(document).ready(function(){
             data: {
                 news_id: news_id,
                 user_id: user_id,
-                count: 1
+                like_class: like_class
             },
             success: function (data) {
                 console.log(data);
@@ -35,24 +38,32 @@ $(document).ready(function(){
     $(document).on('click','.like_active',function(){
 
         var news_id = $(this).attr('data-id');
+        var id = '#like_count'+ news_id;
         var user_id = $('#user_id').text();
-        var like_count = $('#like_count').text();
+        var like_count = $(id).text();
+        $(id).text(parseInt(like_count) - 1);
 
         $(this).removeClass('like_active');
         $(this).addClass('like_passive');
 
         $.ajax({
-            type: "POST",
-            url: '/like',
+            type: "DELETE",
+            url: '/like/delete',
             data: {
                 news_id: news_id,
                 user_id: user_id,
-                count: 0
             },
             success: function (data) {
                 console.log(data);
             }
         });
     });
+
+
+
+
+
+
+
 
 });

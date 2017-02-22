@@ -26,7 +26,6 @@ class LikeRequest extends Request
         return [
             'user_id' => 'required',
             'news_id' => 'required',
-            'count' => 'required'
         ];
     }
 }

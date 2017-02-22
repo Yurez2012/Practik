@@ -23,6 +23,12 @@
     <!-- Custom Fonts -->
     <link href="{{ URL::asset('assets/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
 
+    <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
+    <script src="https://www.amcharts.com/lib/3/serial.js"></script>
+    <script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
+    <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
+    <script src="https://www.amcharts.com/lib/3/themes/black.js"></script>
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -190,6 +196,15 @@
                         <li>
                             <a href="{{ URL('auth/admin/menu/create') }}"><i class="fa fa-file-o" aria-hidden="true"></i>
                                 New Menu</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="javascript:;" data-toggle="collapse" data-target="#diagram"><i class="fa fa-area-chart" aria-hidden="true"></i>
+                        Diagram <i class="fa fa-fw fa-caret-down"></i></a>
+                    <ul id="diagram" class="collapse">
+                        <li>
+                            <a href="{{ URL('auth/admin/diagram/user') }}"><i class="fa fa-archive" aria-hidden="true"></i> User </a>
                         </li>
                     </ul>
                 </li>

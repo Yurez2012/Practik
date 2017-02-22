@@ -19,6 +19,7 @@
     <link href={{ URL::asset("assets/css/blog-home.css") }} rel="stylesheet">
     <!-- Custom Fonts -->
     <link href="{{ URL::asset('assets/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
+
     <title>Document</title>
 </head>
 <body>
@@ -84,10 +85,11 @@
 <!-- /.container -->
 
 <!-- jQuery -->
-<script src="js/jquery.js"></script>
+<script src="{{ URL::asset("assets/js/jquery.js") }}"></script>
+<script src="{{ URL::asset("assets/js/myjs.js") }}"></script>
 
 <!-- Bootstrap Core JavaScript -->
-<script src="js/bootstrap.min.js"></script>
+<script src="{{ URL::asset("assets/js/bootstrap.min.js") }}"></script>
 
 </body>
 </html>

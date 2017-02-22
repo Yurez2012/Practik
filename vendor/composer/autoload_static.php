@@ -288,6 +288,8 @@ class ComposerStaticInit635608a02019ee2166a40c13e92973c7
 
     public static $classMap = array (
         'CreateCategoryTable' => __DIR__ . '/../..' . '/database/migrations/2017_02_02_084553_create_category_table.php',
+        'CreateDiagramsTable' => __DIR__ . '/../..' . '/database/migrations/2017_02_22_095732_create_diagrams_table.php',
+        'CreateLikenewsTable' => __DIR__ . '/../..' . '/database/migrations/2017_02_17_094807_create_likenews_table.php',
         'CreateLikesTable' => __DIR__ . '/../..' . '/database/migrations/2017_02_16_091217_create_likes_table.php',
         'CreateMenuTable' => __DIR__ . '/../..' . '/database/migrations/2017_02_02_100028_create_menu_table.php',
         'CreateNewsTable' => __DIR__ . '/../..' . '/database/migrations/2017_01_31_134033_create_news_table.php',

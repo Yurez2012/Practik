@@ -9,6 +9,8 @@
 
             {!! Form::open(['url' => 'auth/admin/news', 'enctype' => 'multipart/form-data']) !!}
 
+           {{ csrf_field() }}
+
             <div class="form-group">
                 {!! Form::label('title', 'Title') !!}
                 {!! Form::text('title', 'Title', ['class' => 'form-control']) !!}
