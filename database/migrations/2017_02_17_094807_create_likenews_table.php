@@ -21,6 +21,7 @@ class CreateLikenewsTable extends Migration
               news.`category`,
               news.img,
               news.date_to_add,
+              news.created_at,
               likes.like_class,
               COUNT(likes.id) AS `liked`
             FROM

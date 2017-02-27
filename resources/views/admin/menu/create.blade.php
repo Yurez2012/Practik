@@ -9,6 +9,8 @@
 
         {!! Form::open(['url' => 'auth/admin/menu']) !!}
 
+
+
         <div class="form-group">
             {!! Form::label('name', 'Menu') !!}
             {!! Form::text('name', 'Name', ['class' => 'form-control']) !!}

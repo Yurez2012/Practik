@@ -94,8 +94,8 @@
                 },
                     @foreach($user as $us)
                     {
-                    "date": "{!! $us->created_at !!}",
-                    "value": "{!! $us->id !!}"
+                    "date": "{!! $us->date !!}",
+                    "value": "{!! $us->count !!}"
                 },
                     @endforeach
                 ]

@@ -11,6 +11,7 @@ use App\Like;
 use App\LikeNews;
 use App\Menu;
 use App\News;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -50,7 +51,6 @@ class NewsController extends Controller
         // add news user db
         $user['ip_user'] = $_SERVER['REMOTE_ADDR'];
         $users = diagram::all();
-
         if(empty($users[0])) { diagram::create($user); }
 
         $true = null;
@@ -63,7 +63,7 @@ class NewsController extends Controller
         if($true != 1) { diagram::create($user); }
         //end add new user
 
-        $news = LikeNews::orderBy('date_to_add', 'asc')->paginate(5);
+        $news = LikeNews::orderBy('created_at', 'desc')->paginate(5);
         return view('news.news', compact('news'));
     }
 
@@ -225,18 +225,13 @@ class NewsController extends Controller
 
         $like = Like::all();
         $request = $request->all();
+        $true = 0;
 
-        if(!isset($like['0'])){
-            Like::create($request);
-        }
-
+        if(!isset($like['0'])){ Like::create($request); }
         foreach ($like as $liked) {
-            if($liked->user_id == $request['user_id'] && $liked->news_id == $request['news_id']) {
-
-            }else {
-                Like::create($request);
-            }
+            if($liked->user_id == $request['user_id'] && $liked->news_id == $request['news_id']) {}else {$true = 1;}
         }
+        if($true == 1) { Like::create($request); }
 
     }
 

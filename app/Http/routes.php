@@ -48,6 +48,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('auth/admin/category', 'CategoryController');
     Route::get('auth/admin/menu/index', 'MenuController@indexAdmin');
     Route::resource('auth/admin/menu', 'MenuController');
+
+    //diagrams
     Route::get('auth/admin/diagram/user', 'DiagramController@index');
+    Route::get('auth/admin/diagram/news', 'DiagramController@news');
 
 });

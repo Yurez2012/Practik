@@ -22,6 +22,8 @@
 
     <!-- Custom Fonts -->
     <link href="{{ URL::asset('assets/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
 
     <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
     <script src="https://www.amcharts.com/lib/3/serial.js"></script>
@@ -205,6 +207,9 @@
                     <ul id="diagram" class="collapse">
                         <li>
                             <a href="{{ URL('auth/admin/diagram/user') }}"><i class="fa fa-archive" aria-hidden="true"></i> User </a>
+                        </li>
+                        <li>
+                            <a href="{{ URL('auth/admin/diagram/news') }}"><i class="fa fa-archive" aria-hidden="true"></i> News </a>
                         </li>
                     </ul>
                 </li>
